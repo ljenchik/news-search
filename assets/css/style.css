@@ -1,0 +1,14 @@
+.custom {
+    display: flex;
+    align-items: center;
+    background-color: navy;
+    color: white;
+    padding: 30px;
+    margin: 0px;
+    text-align: center;
+    height: 200px;
+}
+
+form {
+    margin: 20px;
+}
