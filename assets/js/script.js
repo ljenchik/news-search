@@ -38,29 +38,28 @@ searchButton.on("click", function (event) {
     method: "GET",
   }).then(function (response) {
     //if (response.ok) {
-    const data = response.response.docs.slice(0, numberOfRecordsEl)
+    const data = response.response.docs.slice(0, numberOfRecordsEl);
     console.log(response.response.docs.slice(0, numberOfRecordsEl));
     //}
     let displayList = $("#display-list");
     for (let i = 0; i < data.length; i++) {
-        let listEl = $("<li>");
-
-        let headlineEl = $("<h3>").text(data[i].headline.main);
-        let pEl = $("<p>").text(data[i].abstract);
-        let yearEl = $("<p>").text(data[i].pub_date.split("T")[0]);
-        let urlEl = $("<p>").text(data[i].web_url);
-
-        listEl.append(headlineEl);
-        listEl.append(pEl);
-        listEl.append(yearEl);
-        listEl.append(urlEl);
-        listEl.addClass("card-body");
+      let listEl = $("<li>");
 
 
-        displayList.append(listEl)
+      let dateEl = moment(data[i].pub_date).format('LL');
+      let yearEl = $("<p>").text(dateEl).addClass("p-2");
+
+      let headlineEl = $("<h5>").text(data[i].headline.main).addClass("card-header");
+
+      let pEl = $("<p>").text(data[i].abstract).addClass("p-2");
+      let urlEl = $("<a>").attr('href', data[i].web_url).text(data[i].web_url).addClass("p-2");
+
+      listEl.append(headlineEl);
+      listEl.append(yearEl);
+      listEl.append(pEl);
+      listEl.append(urlEl).addClass("card");
+
+      displayList.append(listEl);
     }
-    
   });
 });
-
-
