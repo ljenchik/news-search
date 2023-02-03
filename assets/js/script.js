@@ -5,6 +5,7 @@ const searchButton = $("#search-button");
 const clearhButton = $("#clear-button");
 
 searchButton.on('click', function(event) {
+    event.preventDefault();
     let searchTermsEl = $("#search-terms").val().trim();
     let numberOfRecordsEl = parseInt($("#number-of-records").val().trim());
     let startEl = $("#start-year").val().trim();
