@@ -5,6 +5,7 @@ const searchButton = $("#search-button");
 const clearhButton = $("#clear-button");
 
 searchButton.on('click', function(event) {
+    event.preventDefault();
     let searchTermsEl = $("#search-terms").val().trim();
     console.log(searchTermsEl);
     
@@ -23,7 +24,7 @@ searchButton.on('click', function(event) {
 
     
 
-    console.log(queryURL);
+    // console.log(queryURL);
     $.ajax({
         url: queryURL,
         method: "GET",
