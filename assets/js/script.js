@@ -6,10 +6,10 @@ const clearhButton = $("#clear-button");
 
 searchButton.on('click', function(event) {
     let searchTermsEl = $("#search-terms").val().trim();
-    console.log(searchTermsEl);
-    
     let numberOfRecordsEl = parseInt($("#number-of-records").val().trim());
     let startEl = $("#start-year").val().trim();
+
+    if (startEl)
     startEl = startEl+"0101"
     let endEl = $("#end-year").val().trim();
     endEl = endEl + "1231"
@@ -21,13 +21,13 @@ searchButton.on('click', function(event) {
         alert("Enter search terms");
     }
 
-    
-
-    console.log(queryURL);
     $.ajax({
         url: queryURL,
         method: "GET",
     }).then(function (response) {
-        console.log(response.response.docs.slice(0, numberOfRecordsEl));
+        if (response.ok) {
+            console.log(response.response.docs.slice(0, numberOfRecordsEl));
+        }
+        
     });
 })
